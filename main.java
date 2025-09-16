@@ -1,48 +1,70 @@
+import java.util.Scanner;
+class Paciente {
+     String nome;
+     double peso;
+     double altura;
+
+     Paciente(String nome, double peso, double altura) {
+          this.nome = nome;
+          this.peso = peso;
+          this.altura = altura;
+     }
+
+     double calcularIMC() {
+          return peso / (altura * altura);
+     }
+
+     String faixaIMC(double imc) {
+          if (imc < 18.5) return "Abaixo do peso";
+          else if (imc < 25.0) return "Peso normal";
+          else if (imc < 30.0) return "Sobrepeso";
+          else if (imc < 35.0) return "Obesidade grau I";
+          else if (imc < 40.0) return "Obesidade grau II";
+          else return "Obesidade grau III";
+     }
+}
+
 public class main {
-    public static void main(String[] args) {
-        // Criando algumas pessoas
-        Pessoa p1 = new Pessoa("Ana", 25);
-        Pessoa p2 = new Pessoa("Carlos", 30);
+     public static void main(String[] args) {
+          Scanner sc = new Scanner(System.in);
 
-        // Exibindo informações
-        System.out.println("=== Cadastro de Pessoas ===");
-        p1.exibirInfo();
-        p2.exibirInfo();
-    }
+          System.out.print("Nome do paciente: ");
+          String nome = sc.nextLine();
+
+          System.out.print("Peso (kg): ");
+          double peso = sc.nextDouble();
+
+          System.out.print("Altura (m): ");
+          double altura = sc.nextDouble();
+
+          Paciente paciente = new Paciente(nome, peso, altura);
+          double imc = paciente.calcularIMC();
+          String faixa = paciente.faixaIMC(imc);
+
+          System.out.printf("Paciente: %s\nIMC: %.2f\nSituação: %s\n", nome, imc, faixa);
+
+          // Extensão: Simulação de monitoramento de pacientes
+          // Exemplo de lista de pacientes
+          Paciente[] pacientes = {
+                paciente,
+                new Paciente("Ana", 68, 1.65),
+                new Paciente("Carlos", 95, 1.80)
+          };
+
+          System.out.println("\nMonitoramento de pacientes:");
+          for (Paciente p : pacientes) {
+                double imcP = p.calcularIMC();
+                String faixaP = p.faixaIMC(imcP);
+                System.out.printf("Paciente: %s | IMC: %.2f | Situação: %s\n", p.nome, imcP, faixaP);
+          }
+
+          sc.close();
+     }
 }
 
-// Classe Pessoa
-class Pessoa {
-    private String nome;
-    private int idade;
 
-    // Construtor
-    public Pessoa(String nome, int idade) {
-        this.nome = nome;
-        this.idade = idade;
-    }
 
-    // Getter e Setter
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
-    public int getIdade() {
-        return idade;
-    }
 
-    public void setIdade(int idade) {
-        if (idade > 0) {
-            this.idade = idade;
-        }
-    }
 
-    // Método para exibir informações
-    public void exibirInfo() {
-        System.out.println("Nome: " + nome + " | Idade: " + idade + " anos");
-    }
-}
