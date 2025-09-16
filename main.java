@@ -1,4 +1,3 @@
-// Arquivo: Main.java
 public class main {
     public static void main(String[] args) {
         // Criando algumas pessoas
