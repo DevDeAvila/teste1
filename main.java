@@ -1,5 +1,5 @@
 // Arquivo: Main.java
-public class Main {
+public class main {
     public static void main(String[] args) {
         // Criando algumas pessoas
         Pessoa p1 = new Pessoa("Ana", 25);
